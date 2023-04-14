@@ -35,11 +35,32 @@ try {
 }
     
 }
-const UpdateTodo = (req,res)=>{
-    res.send("Todo Updated Successfully")
+const UpdateTodo = async(req,res)=>{
+    try {
+        const { name,  age, year,classname } = req.body;
+        const newData = {
+            name:name,
+            classname:classname,
+            age:age,
+            year:year
+        }
+        const result = await TodoModel.findByIdAndUpdate(req.params.id,newData)
+        res.status(201).send(result)
+        
+    } catch (error) {
+        console.log(error)
+        
+    }
+    
 }
-const DeleteTodo = (req,res)=>{
-    res.send("Todo Deleted Successfully")
+const DeleteTodo = async(req,res)=>{
+    try {
+        
+    } catch (error) {
+        console.log(error)
+        
+    }
+    
 }
 
 export {AddTodo,DeleteTodo,UpdateTodo,FetchTodo}
